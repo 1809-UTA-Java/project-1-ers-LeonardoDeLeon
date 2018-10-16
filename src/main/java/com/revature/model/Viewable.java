@@ -1,6 +1,6 @@
 package com.revature.model;
 
-public interface Manager {
+public interface Viewable {
 	public boolean login(String username, String password);
 	//public void login(String username, String password);
 	
