@@ -24,4 +24,16 @@ public class UsersTest {
 	    boolean result = u.login("FredBeGoodIsNotAUser", "12345");
 	    assertFalse(result);
 	}
+	
+	@Test
+	public void  testLogoutSuccess() {
+		boolean result = u.logout("Fred");
+		assertTrue(result);
+	}
+	
+	@Test
+	public void  testLogoutFail() {
+		boolean result = u.logout("user123");
+		assertFalse(result);
+	}
 }

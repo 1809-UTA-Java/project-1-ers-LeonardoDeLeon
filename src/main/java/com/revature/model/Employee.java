@@ -11,11 +11,11 @@ public class Employee extends Users implements Editable, Notifiable {
 		return false;
 	}
 	
-	public boolean notifyByEmail() {
+	public boolean submit() {
 		return false;
 	}
 	
-	public boolean submit() {
+	public boolean notifyByEmail() {
 		return false;
 	}
 }

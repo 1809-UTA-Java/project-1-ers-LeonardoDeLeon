@@ -45,6 +45,20 @@ public class Users implements Viewable {
 	}
 
 	public boolean logout(String username) {
+
+		List<Users> users = getDummyTestVariables();
+
+		for (Users aUser : users) {
+			if (username.equals(aUser.getUsername())) {
+				int initialSize = users.size();
+				users.remove(aUser); 
+				if (initialSize > users.size())
+					System.out.println(initialSize +" > "+ users.size());
+					
+				return true;
+			}
+		}
+
 		return false;
 	}
 
@@ -52,16 +66,12 @@ public class Users implements Viewable {
 
 		List<Users> userList = new ArrayList<Users>();
 
-		// create a list of 10 users, each with user names
-		// that increment (ie. user1, user2, user3, user4),
-		// all these users will have the password set to
-		// 'howtoprogramwithjava'
 		for (int i = 0; i < 10; i++) {
 			userList.add(new Users("user" + i, "howtoprogramwithjava"));
 		}
-		
-		userList.add(new Users("Bob","12345"));
-		userList.add(new Users("Fred","123Fred45"));
+
+		userList.add(new Users("Bob", "12345"));
+		userList.add(new Users("Fred", "123Fred45"));
 
 		return userList;
 	}
