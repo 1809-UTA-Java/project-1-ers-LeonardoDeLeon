@@ -3,7 +3,7 @@ package com.revature.model;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Users implements Viewable {
+public class Users implements Accessible, Viewable {
 
 	private String username;
 	private String password;
@@ -51,10 +51,10 @@ public class Users implements Viewable {
 		for (Users aUser : users) {
 			if (username.equals(aUser.getUsername())) {
 				int initialSize = users.size();
-				users.remove(aUser); 
+				users.remove(aUser);
 				if (initialSize > users.size())
-					System.out.println(initialSize +" > "+ users.size());
-					
+					System.out.println(initialSize + " > " + users.size());
+
 				return true;
 			}
 		}
@@ -76,4 +76,64 @@ public class Users implements Viewable {
 		return userList;
 	}
 
+	public boolean view(int VIEW_CHANNEL) {
+
+		List<Users> userList;
+		List<Employee> empList;
+		List<Reimbursement> rbmList;
+		List<Manager> mgrList;
+
+		// switch statement with int data type
+		switch (VIEW_CHANNEL) {
+		case Viewable.VIEW_ALL_EMP:
+			empList = new ArrayList<Employee>();
+			userList = null;
+			rbmList = null;
+			mgrList = null;
+			break;
+		case Viewable.VIEW_EMP_HOME:
+			empList = new ArrayList<Employee>();
+			userList = null;
+			rbmList = null;
+			mgrList = null;
+			break;
+		case Viewable.VIEW_EMP_INFO:
+			empList = new ArrayList<Employee>();
+			userList = null;
+			rbmList = null;
+			mgrList = null;
+			break;
+		case Viewable.VIEW_IMAGE_OF_RCPT:
+			rbmList = new ArrayList<Reimbursement>();
+			userList = null;
+			empList = null;
+			mgrList = null;
+			break;
+		case Viewable.VIEW_PENDING_ER:
+			rbmList = new ArrayList<Reimbursement>();
+			userList = null;
+			empList = null;
+			mgrList = null;
+			break;
+		case Viewable.VIEW_RESOLVED_ER:
+			rbmList = new ArrayList<Reimbursement>();
+			userList = null;
+			empList = null;
+			mgrList = null;
+			break;
+		case Viewable.VIEW_MGR_HOME:
+			mgrList = new ArrayList<Manager>();
+			userList = null;
+			empList = null;
+			rbmList = null;
+			break;
+		default:
+			empList = new ArrayList<Employee>();
+			userList = null;
+			rbmList = null;	
+			mgrList = null;
+			break;
+		}
+		return false;
+	}
 }
