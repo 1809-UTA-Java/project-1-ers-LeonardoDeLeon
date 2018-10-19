@@ -10,5 +10,7 @@ public interface Viewable {
 	public static final int VIEW_RESOLVED_ER = 210;
 	public static final int VIEW_IMAGE_OF_RCPT = 225;
 	
-	public boolean view(int viewChannel);	
+	public boolean view(int viewChannel);
 }
+
+	

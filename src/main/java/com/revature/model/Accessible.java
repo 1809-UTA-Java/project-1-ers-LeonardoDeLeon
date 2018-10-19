@@ -5,4 +5,5 @@ public interface Accessible {
 	//public void login(String username, String password);
 	
 	public boolean logout(String username);
+	
 }

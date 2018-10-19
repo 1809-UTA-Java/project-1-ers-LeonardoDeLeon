@@ -11,6 +11,9 @@ public class Reimbursement {
 	private Timestamp submitted;
 	private Timestamp resolved;
 	private int authorId;
+	private int resolverId;
+	private int reimbursementType;
+	private int reimbursementStatus;
 
 	public Reimbursement() {
 		super();
@@ -31,10 +34,6 @@ public class Reimbursement {
 		this.reimbursementType = reimbursementType;
 		this.reimbursementStatus = reimbursementStatus;
 	}
-
-	private int resolverId;
-	private int reimbursementType;
-	private int reimbursementStatus;
 
 	@Override
 	public String toString() {

@@ -9,31 +9,31 @@ public class UsersTest {
 	
 	@Test
 	public void testLoginBothValid() {
-	    boolean result = u.login("user3", "howtoprogramwithjava");
+	    boolean result = u.login("unobob", "bob123");
 	    assertTrue(result);
 	}
 	
 	@Test
 	public void testLoginInvalidPassword() {
-	    boolean result = u.login("Bob", "thispasswordisbad");
+	    boolean result = u.login("unobob", "thispasswordisbad");
 	    assertFalse(result);
 	}
 	
 	@Test
 	public void testLoginInvalidUsername() {
-	    boolean result = u.login("FredBeGoodIsNotAUser", "12345");
+	    boolean result = u.login("FredBeGoodIsNotAUser", "bob123");
 	    assertFalse(result);
 	}
 	
 	@Test
 	public void  testLogoutSuccess() {
-		boolean result = u.logout("Fred");
+		boolean result = u.logout("bannifred");
 		assertTrue(result);
 	}
 	
 	@Test
 	public void  testLogoutFail() {
-		boolean result = u.logout("user123");
+		boolean result = u.logout("bannifreddo");
 		assertFalse(result);
 	}
 }
