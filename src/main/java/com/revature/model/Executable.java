@@ -2,9 +2,9 @@ package com.revature.model;
 
 public interface Executable {
 	
-	public boolean approve();
+	public boolean approve(int userId);
 	//public void approve();
 	
-	public boolean deny();
+	public boolean deny(int userId);
 	//public void deny();
 }

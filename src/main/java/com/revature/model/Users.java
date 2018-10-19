@@ -127,13 +127,6 @@ public class Users implements Accessible, Viewable {
 
 		List<Users> userList = new ArrayList<Users>();
 
-//		for (int i = 0; i < 10; i++) {
-//			userList.add(new Users("user" + i, "howtoprogramwithjava"));
-//		}
-//
-//		userList.add(new Users("Bob", "12345"));
-//		userList.add(new Users("Fred", "123Fred45"));
-
 		userList.add(new Users(105,"unobob","bob123","Bob","Uno","bob.uno@goog.gom",55));
 		userList.add(new Users(106,"fortejoe23","joe123","Joe","Forte","joe.forte@goog.gom",55));
 		userList.add(new Users(107,"reilolmarie","m4r1elo0","Marie","Lolier","Mae.lier@goog.gom",55));

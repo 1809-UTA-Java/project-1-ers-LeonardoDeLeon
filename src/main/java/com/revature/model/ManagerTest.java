@@ -22,5 +22,53 @@ public class ManagerTest {
 	    boolean result = m.view(Viewable.VIEW_EMP_INFO);
 	    assertTrue(result);
 	}
+	
+	@Test
+	public void testViewMnrHome() {
+	    boolean result = m.view(Viewable.VIEW_MGR_HOME);
+	    assertTrue(result);
+	}
+	
+	@Test
+	public void testViewPendingReimbursement() {
+	    boolean result = m.view(Viewable.VIEW_PENDING_ER);
+	    assertTrue(result);
+	}
+	
+	@Test
+	public void testViewReceiptWithNoImage() {
+	    boolean result = m.view(Viewable.VIEW_IMAGE_OF_RCPT);
+	    assertTrue(result);
+	}
+	
+	@Test
+	public void testViewReceiptWithImage() {
+	    boolean result = m.view(Viewable.VIEW_IMAGE_OF_RCPT);
+	    assertTrue(result);
+	}
+	
+	@Test
+	public void testApproved() {
+	    boolean result = m.approve(105);
+	    assertTrue(result);
+	}
+	
+	@Test
+	public void testApprovedNoSuchUserId() {
+	    boolean result = m.approve(104);
+	    assertFalse(result);
+	}
+	
+	@Test
+	public void testDeny() {
+	    boolean result = m.deny(106);
+	    assertTrue(result);
+	}
+	
+	@Test
+	public void testDenyNoSuchUserId() {
+	    boolean result = m.deny(102);
+	    assertFalse(result);
+	}
 }
 
