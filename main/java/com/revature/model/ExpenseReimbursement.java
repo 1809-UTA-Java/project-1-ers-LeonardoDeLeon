@@ -138,5 +138,15 @@ public class ExpenseReimbursement {
 		
 		return expRbmList;
 	}
-	
+
+	public List<ExpenseReimbursement> getExpRbmDummyTestData2(int authorId, double amount, Timestamp submitted, int expRbmTypeId) {
+
+		List<ExpenseReimbursement> expRbmList = new ArrayList<ExpenseReimbursement>();
+
+		//expRbmList.add(new ExpenseReimbursement(1050,35.49,"uber to hotel",null,Timestamp.valueOf("2018-09-18 10:10:10.000000000"),Timestamp.valueOf("2005-09-20 10:10:10.000000000"),105,108,120,105));
+		
+		expRbmList.add(new ExpenseReimbursement(1000,amount,null,null,submitted,null,authorId,10,expRbmTypeId,105));
+		
+		return expRbmList;
+	}
 }

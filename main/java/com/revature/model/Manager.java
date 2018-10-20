@@ -85,7 +85,7 @@ public class Manager extends Users implements Executable {
 				}
 				// test
 				for (Users u : employeeList) {
-					if (u.getUserId() == 107) {
+					if (u.getUserId() == 107 || u.getUsername().equals("reilolmarie")) {
 						System.out.println(u.toString());						
 					}
 				}

@@ -34,6 +34,12 @@ public class ManagerTest {
 	    boolean result = m.view(Viewable.VIEW_PENDING_ER);
 	    assertTrue(result);
 	}
+
+	@Test
+	public void testViewResolvedReimbursement() {
+	    boolean result = m.view(Viewable.VIEW_RESOLVED_ER);
+	    assertTrue(result);
+	}
 	
 	@Test
 	public void testViewReceiptWithNoImage() {
