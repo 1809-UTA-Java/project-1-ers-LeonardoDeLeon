@@ -8,6 +8,12 @@ import com.revature.repository.ErsDao;
 
 public class Users implements Accessible, Viewable {
 
+	@Override
+	public String toString() {
+		return "Users [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", userRoleId=" + userRoleId + "]";
+	}
+
 	private int userId;
 	private String username;
 	private String password;
