@@ -148,4 +148,14 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SeeEmpInfoServlet</display-name>
+    <servlet-name>SeeEmpInfoServlet</servlet-name>
+    <servlet-class>com.revature.servlet.SeeEmpInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SeeEmpInfoServlet</servlet-name>
+    <url-pattern>/employeeinfo</url-pattern>
+  </servlet-mapping>
 </web-app>
