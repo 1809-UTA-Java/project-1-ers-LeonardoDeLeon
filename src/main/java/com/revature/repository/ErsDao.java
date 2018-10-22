@@ -10,16 +10,52 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-
-import com.revature.model.ExpenseReimbursement;
-import com.revature.model.Users;
-
 import com.revature.util.DbConnUtil;
+
+import com.revature.model.Users;
+import com.revature.model.ExpenseReimbursement;
+
 
 import oracle.jdbc.internal.OracleTypes;
 
 public class ErsDao {
+	
+	public List<Users> getUsers() {
+		CallableStatement cs = null;
+
+		Users u = null;
+		List<Users> users = new ArrayList<Users>();
+
+		try (Connection conn = DbConnUtil.getDbConnect()) {
+			String sql = "{ CALL GET_USERS(?) }";
+			cs = conn.prepareCall(sql);
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			cs.execute();
+
+			ResultSet rs = (ResultSet) cs.getObject(1);
+			while (rs.next()) {
+				int userId = rs.getInt("user_id");
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+				String firstName = rs.getString("firstname");
+				String lastName = rs.getString("lastname");
+				String email = rs.getString("email");
+				int roleId = rs.getInt("role_id");
+
+				u = new Users(userId, username, password, firstName, lastName, email, roleId);
+				users.add(u);
+			}
+
+			cs.close();
+			rs.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return users;
+	}
+
+	
 	public List<Users> getEmployees() {
 		CallableStatement cs = null;
 
@@ -161,6 +197,81 @@ public class ErsDao {
 		} catch (IOException ex) {
 			ex.getMessage();
 		}
+	}
+
+	public ExpenseReimbursement getPendingRequestById(int authorId) {
+		PreparedStatement ps = null;
+		ExpenseReimbursement er = null;
+		try (Connection conn = DbConnUtil.getDbConnect()) {
+
+			String sql = "SELECT * FROM EXPENSE_REIMBURSEMENTS WHERE AUTHOR_ID=? AND ER_STATUS=105";     		
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, authorId);
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int expRbmId = rs.getInt("er_id");
+				double amount = rs.getDouble("er_amount");
+				String expRbmDesc = rs.getString("er_desc");
+				Blob receipt = rs.getBlob("receipt");
+				Timestamp submitted = rs.getTimestamp("submitted");
+				Timestamp resolved = rs.getTimestamp("resolved");
+				int authId = rs.getInt("author_id");
+				int resolverId = rs.getInt("resolver_id");
+				int expRbmTypeId = rs.getInt("er_type");
+				int expRbmStatusId = rs.getInt("er_status");
+
+				er = new ExpenseReimbursement(expRbmId, amount, expRbmDesc, receipt, submitted, resolved, authId,
+						resolverId, expRbmTypeId, expRbmStatusId);
+			}
+
+			rs.close();
+			ps.close();
+		} catch (SQLException ex) {
+			System.out.println("ex --- "+ex);
+			ex.getMessage();
+		} catch (IOException ex) {
+			ex.getMessage();
+		}
+		return er;
+	}
+	
+	public ExpenseReimbursement getResolvedRequestById(int authorId) {
+		PreparedStatement ps = null;
+		ExpenseReimbursement er = null;
+		try (Connection conn = DbConnUtil.getDbConnect()) {
+
+			String sql = "SELECT * FROM EXPENSE_REIMBURSEMENTS WHERE AUTHOR_ID=? AND ER_STATUS=210";     		
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, authorId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int expRbmId = rs.getInt("er_id");
+				double amount = rs.getDouble("er_amount");
+				String expRbmDesc = rs.getString("er_desc");
+				Blob receipt = rs.getBlob("receipt");
+				Timestamp submitted = rs.getTimestamp("submitted");
+				Timestamp resolved = rs.getTimestamp("resolved");
+				int authId = rs.getInt("author_id");
+				int resolverId = rs.getInt("resolver_id");
+				int expRbmTypeId = rs.getInt("er_type");
+				int expRbmStatusId = rs.getInt("er_status");
+
+				er = new ExpenseReimbursement(expRbmId, amount, expRbmDesc, receipt, submitted, resolved, authId,
+						resolverId, expRbmTypeId, expRbmStatusId);
+			}
+
+			rs.close();
+			ps.close();
+		} catch (SQLException ex) {
+			System.out.println("ex --- "+ex);
+			ex.getMessage();
+		} catch (IOException ex) {
+			ex.getMessage();
+		}
+		return er;
 	}
 	
 	public List<ExpenseReimbursement> getPendingRequest() {
@@ -350,13 +461,17 @@ public class ErsDao {
 //		for (ExpenseReimbursement er : expRbmList2) {
 //			System.out.println(er.toString());
 //		}
-		List<ExpenseReimbursement> expRbmList3 = ers.getDeniedRequest();
-		System.out.println("expRbmList3.size(): " + expRbmList3.size());
-		for (ExpenseReimbursement er : expRbmList3) {
-			System.out.println(er.toString());
+//		List<ExpenseReimbursement> expRbmList3 = ers.getDeniedRequest();
+//		System.out.println("expRbmList3.size(): " + expRbmList3.size());
+//		for (ExpenseReimbursement er : expRbmList3) {
+//			System.out.println(er.toString());
+//		}
+//		
+//		ers.updateInfo("boba321", 105);
+		List<Users> users = ers.getUsers();
+		for (Users u : users) {
+			System.out.println(u.toString());
 		}
-		
-		ers.updateInfo("boba321", 105);
 	}
 
 }

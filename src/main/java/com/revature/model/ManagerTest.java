@@ -13,7 +13,7 @@ public class ManagerTest {
 		
 	@Test
 	public void testViewAllEmployee() {
-	    boolean result = m.view(Viewable.VIEW_ALL_EMP);
+		boolean result = m.view(Viewable.VIEW_ALL_EMP);
 	    assertTrue(result);
 	}
 
